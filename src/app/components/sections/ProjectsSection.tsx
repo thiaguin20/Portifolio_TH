@@ -48,6 +48,16 @@ const PROJECTS_TREE: TreeNode = {
         { id: 'docitha-crud', label: 'CRUD', color: '#a3e635' },
       ],
     },
+    {
+      id: 'portfolio-ias',
+      label: 'Portfolio IAS',
+      color: '#06b6d4',
+      children: [
+        { id: 'portfolio-ias-html', label: 'HTML', color: '#67e8f9' },
+        { id: 'portfolio-ias-js', label: 'JavaScript', color: '#67e8f9' },
+        { id: 'portfolio-ias-live', label: 'Live FX', color: '#67e8f9' },
+      ],
+    },
   ],
 }
 
@@ -90,6 +100,16 @@ const PROJECT_CARDS = [
     color: '#84cc16',
     video: '/projects/docitha.mp4',
     github: 'https://github.com/thiaguin20/docitha',
+    portrait: false,
+  },
+  {
+    id: 'portfolio-ias',
+    title: 'Portfolio IAS',
+    desc: 'Vitrine de videos e efeitos com IA para criadores, TikTokers e lives, com categorias, modal de preview, curtidas locais, idiomas e CTA para WhatsApp.',
+    tags: ['HTML', 'CSS', 'JavaScript', 'Vercel', 'IA Visual'],
+    color: '#06b6d4',
+    video: '/projects/portfolio-ias.mp4',
+    github: 'https://github.com/thiaguin20/Portfolio_IAS',
     portrait: false,
   },
 ]
