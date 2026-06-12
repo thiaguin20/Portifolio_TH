@@ -6,10 +6,10 @@ const CHANNELS = [
   {
     id: 'email',
     label: 'EMAIL',
-    value: 'thiago@email.com',
+    value: 'thiagopiovans@gmail.com',
     Icon: Mail,
     color: '#06b6d4',
-    href: 'mailto:thiago@email.com',
+    href: 'mailto:thiagopiovans@gmail.com',
   },
   {
     id: 'linkedin',
