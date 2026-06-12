@@ -19,57 +19,53 @@ export function ParticleField() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
     const resize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+      canvas.width = Math.floor(window.innerWidth * dpr)
+      canvas.height = Math.floor(window.innerHeight * dpr)
+      canvas.style.width = `${window.innerWidth}px`
+      canvas.style.height = `${window.innerHeight}px`
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
     }
     resize()
     window.addEventListener('resize', resize)
 
     const colors = ['rgba(6,182,212,', 'rgba(132,204,22,', 'rgba(59,130,246,']
-    const particles: Particle[] = Array.from({ length: 80 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3,
+    const particleCount = window.innerWidth < 768 ? 24 : 42
+    const particles: Particle[] = Array.from({ length: particleCount }, () => ({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      vx: (Math.random() - 0.5) * 0.18,
+      vy: (Math.random() - 0.5) * 0.18,
       r: Math.random() * 1.5 + 0.3,
       opacity: Math.random() * 0.6 + 0.1,
       color: colors[Math.floor(Math.random() * colors.length)],
     }))
 
     let raf: number
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+    let lastFrame = 0
+    const frameInterval = 1000 / 30
+    const draw = (time = 0) => {
+      if (time - lastFrame < frameInterval) {
+        raf = requestAnimationFrame(draw)
+        return
+      }
+      lastFrame = time
+
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
 
       for (const p of particles) {
         p.x += p.vx
         p.y += p.vy
-        if (p.x < 0) p.x = canvas.width
-        if (p.x > canvas.width) p.x = 0
-        if (p.y < 0) p.y = canvas.height
-        if (p.y > canvas.height) p.y = 0
+        if (p.x < 0) p.x = window.innerWidth
+        if (p.x > window.innerWidth) p.x = 0
+        if (p.y < 0) p.y = window.innerHeight
+        if (p.y > window.innerHeight) p.y = 0
 
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
         ctx.fillStyle = `${p.color}${p.opacity})`
         ctx.fill()
-      }
-
-      // subtle connections
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x
-          const dy = particles[i].y - particles[j].y
-          const dist = Math.sqrt(dx * dx + dy * dy)
-          if (dist < 120) {
-            ctx.beginPath()
-            ctx.moveTo(particles[i].x, particles[i].y)
-            ctx.lineTo(particles[j].x, particles[j].y)
-            ctx.strokeStyle = `rgba(6,182,212,${0.04 * (1 - dist / 120)})`
-            ctx.lineWidth = 0.5
-            ctx.stroke()
-          }
-        }
       }
 
       raf = requestAnimationFrame(draw)

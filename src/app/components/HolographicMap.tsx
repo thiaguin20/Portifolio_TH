@@ -58,7 +58,7 @@ const PORTALS: PortalDef[] = [
 ]
 
 const ACTION_LINKS = [
-  { label: 'Curriculo', href: '#' },
+  { label: 'Curriculo', href: '/curriculo-thiago-piovan-costa.pdf', external: true },
   {
     label: 'LinkedIn',
     href: 'https://www.linkedin.com/in/thiago-piovan-578582313',

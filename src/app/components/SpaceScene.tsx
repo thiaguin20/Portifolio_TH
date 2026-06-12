@@ -57,9 +57,10 @@ export function SpaceScene() {
             width: planet.size,
             height: planet.size,
             borderRadius: '50%',
-            opacity: 0.78,
+            opacity: 0.66,
             background: `radial-gradient(circle at 34% 30%, rgba(226,232,240,0.38), ${planet.colorA} 28%, ${planet.colorB} 72%)`,
-            boxShadow: `0 0 ${planet.size * 0.34}px ${planet.colorA}, inset -18px -18px 34px rgba(0,0,0,0.36)`,
+            boxShadow: `0 0 ${planet.size * 0.22}px ${planet.colorA}, inset -14px -14px 28px rgba(0,0,0,0.34)`,
+            willChange: 'transform',
           }}
         >
           <div
@@ -72,7 +73,7 @@ export function SpaceScene() {
               border: `1px solid ${planet.ring}`,
               borderRadius: '50%',
               transform: 'translate(-50%, -50%) rotate(-14deg)',
-              boxShadow: `0 0 18px ${planet.ring}`,
+              opacity: 0.75,
             }}
           />
           <div

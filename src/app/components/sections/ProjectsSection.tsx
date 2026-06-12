@@ -80,6 +80,7 @@ const PROJECT_CARDS = [
     color: '#84cc16',
     video: '/projects/estoque-web.mp4',
     github: 'https://github.com/thiaguin20/Estoque_Web',
+    cloud: 'https://estoqueweb-c7fyejdfdqhvdufp.canadacentral-01.azurewebsites.net',
     portrait: false,
   },
   {
@@ -100,6 +101,7 @@ const PROJECT_CARDS = [
     color: '#84cc16',
     video: '/projects/docitha.mp4',
     github: 'https://github.com/thiaguin20/docitha',
+    cloud: 'https://yellow-mud-01f21ff1e.7.azurestaticapps.net',
     portrait: false,
   },
   {
@@ -110,6 +112,7 @@ const PROJECT_CARDS = [
     color: '#06b6d4',
     video: '/projects/portfolio-ias.mp4',
     github: 'https://github.com/thiaguin20/Portfolio_IAS',
+    cloud: 'https://portfolio-ias-xi.vercel.app/',
     portrait: false,
   },
 ]
@@ -280,27 +283,50 @@ export function ProjectsSection({ onBack }: { onBack: () => void }) {
                         </span>
                       ))}
                     </div>
-                    <a
-                      href={card.github}
-                      target="_blank"
-                      rel="noreferrer"
-                      style={{
-                        display: 'inline-flex',
-                        marginTop: 12,
-                        fontFamily: 'Orbitron, monospace',
-                        fontSize: '0.5rem',
-                        fontWeight: 700,
-                        letterSpacing: '0.14em',
-                        color: '#e2e8f0',
-                        textDecoration: 'none',
-                        border: `1px solid ${card.color}55`,
-                        borderRadius: 3,
-                        padding: '6px 9px',
-                        background: `${card.color}12`,
-                      }}
-                    >
-                      VER GITHUB
-                    </a>
+                    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 12 }}>
+                      <a
+                        href={card.github}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{
+                          display: 'inline-flex',
+                          fontFamily: 'Orbitron, monospace',
+                          fontSize: '0.5rem',
+                          fontWeight: 700,
+                          letterSpacing: '0.14em',
+                          color: '#e2e8f0',
+                          textDecoration: 'none',
+                          border: `1px solid ${card.color}55`,
+                          borderRadius: 3,
+                          padding: '6px 9px',
+                          background: `${card.color}12`,
+                        }}
+                      >
+                        VER GITHUB
+                      </a>
+                      {'cloud' in card && card.cloud && (
+                        <a
+                          href={card.cloud}
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{
+                            display: 'inline-flex',
+                            fontFamily: 'Orbitron, monospace',
+                            fontSize: '0.5rem',
+                            fontWeight: 700,
+                            letterSpacing: '0.14em',
+                            color: card.color,
+                            textDecoration: 'none',
+                            border: `1px solid ${card.color}70`,
+                            borderRadius: 3,
+                            padding: '6px 9px',
+                            background: 'rgba(226,232,240,0.04)',
+                          }}
+                        >
+                          VER ONLINE
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </motion.div>
               ))}
